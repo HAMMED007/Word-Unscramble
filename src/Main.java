@@ -21,84 +21,85 @@ public class Main {
         bufReader.close();
 
 
-
-
 //Ends here
 
 // now we need to scramble the word
         double scores = 0;
         double total = 1;
 
-while (true) {
+        while (true) {
 
-    // we are generating random words from the dictionary here
-    Random randomGenerator2 = new Random();
-    int rd = randomGenerator2.nextInt(listOfLines.size());
-    String dictionary_word = listOfLines.get(rd);
+            // we are generating random words from the dictionary here
+            Random randomGenerator2 = new Random();
+            int rd = randomGenerator2.nextInt(listOfLines.size());
+            String dictionary_word = listOfLines.get(rd);
 
-    char[] ch = dictionary_word.toCharArray();
-    StringBuilder sb = new StringBuilder();
-
-
-    ArrayList<Integer> numbers = new ArrayList<>();
-    Random randomGenerator = new Random();
+            char[] ch = dictionary_word.toCharArray();
+            StringBuilder sb = new StringBuilder();
 
 
-
-    while (sb.length() < dictionary_word.length()) {
-
-
-        int random = randomGenerator.nextInt(dictionary_word.length());
-        if (!numbers.contains(random)) {
-
-            numbers.add(random);
-            sb.append(ch[random]);
+            ArrayList<Integer> numbers = new ArrayList<>();
+            Random randomGenerator = new Random();
 
 
+            while (sb.length() < dictionary_word.length()) {
+
+
+                int random = randomGenerator.nextInt(dictionary_word.length());
+                if (!numbers.contains(random)) {
+
+                    numbers.add(random);
+                    sb.append(ch[random]);
+
+
+                }
+
+
+            }
+
+
+            Scanner sc = new Scanner(System.in);
+
+            while (true) {
+                System.out.println(dictionary_word);
+
+
+                System.out.println();
+                System.out.println("Unscramble the world: " + sb.toString().toUpperCase());
+                if (dictionary_word.length() > 6) {
+
+                    System.out.println("hint: the word starts with");
+                    System.out.println(dictionary_word.substring(0, 1).toUpperCase());
+                    System.out.println(" and ends with with ");
+                    System.out.println(dictionary_word.substring(dictionary_word.length() - 1).toUpperCase());
+                }
+
+                System.out.println("Answer:");
+                String answer = sc.next();
+
+
+                if (answer.equals(dictionary_word)) {
+                    System.out.println("correct!");
+                    scores++;
+                    break;
+
+                } else
+                    System.out.println("INCORRECT");
+                break;
+
+
+            }
+            System.out.println("press 'y' to continue and press 'n' to get your score:");
+            char com = sc.next().charAt(0);
+
+            if (com == 'n')
+                break;
+
+            total++;
+            System.out.println("******************************************************************************");
         }
 
-
-    }
-
-
-    Scanner sc = new Scanner(System.in);
-
-    while (true) {
-
-
-        System.out.println();
-        System.out.println("Unscramble the world: " + sb.toString().toUpperCase());
-
-        System.out.println("Answer:");
-        String answer = sc.next();
-
-
-        if (answer.equals(dictionary_word)) {
-            System.out.println("correct!");
-            scores++;
-            break;
-
-        } else
-            System.out.println("INCORRECT");
-        break;
-
-
-
-
-
-
-    }
-    System.out.println("press 'y' to continue and press 'n' to get your score:");
-    char com = sc.next().charAt(0);
-
-    if (com == 'n')
-        break;
-
-    total++;
-  System.out.println("******************************************************************************");
-}
-
-        System.out.println("your score is " + (scores/total)*100 +"% " );
+        System.out.println("your score is " + (scores / total) * 100 + "% ");
 
     }
 }
